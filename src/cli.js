@@ -23,7 +23,7 @@ const handlers = {
 
 const run = handlers[command || "help"] || showHelp;
 
-run().catch((error) => {
+Promise.resolve(run()).catch((error) => {
   console.error("[open-linear-sync] error:", error.message || error);
   process.exitCode = 1;
 });
