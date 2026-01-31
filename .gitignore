@@ -1,0 +1,5 @@
+node_modules/
+.open-linear-sync/
+.env
+.env.*
+*.log

@@ -1,0 +1,19 @@
+{
+  "name": "open-linear-sync",
+  "version": "0.1.0",
+  "description": "OpenCode plugin + CLI to sync Linear tasks with GitHub PRs via hooks and CI.",
+  "type": "module",
+  "main": "./src/index.js",
+  "bin": {
+    "open-linear-sync": "./src/cli.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
