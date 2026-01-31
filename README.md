@@ -39,6 +39,12 @@ This will:
 open-linear-sync sync
 ```
 
+## Verify
+
+```bash
+npm run verify
+```
+
 ## Environment variables
 
 - `LINEAR_API_KEY` (required unless stored in config)
