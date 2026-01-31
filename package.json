@@ -7,6 +7,9 @@
   "bin": {
     "open-linear-sync": "./src/cli.js"
   },
+  "scripts": {
+    "verify": "node scripts/verify.js"
+  },
   "files": [
     "src",
     "README.md",
