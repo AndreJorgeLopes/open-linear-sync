@@ -45,6 +45,12 @@ open-linear-sync sync
 npm run verify
 ```
 
+## Tests
+
+```bash
+npm test
+```
+
 ## Environment variables
 
 - `LINEAR_API_KEY` (required unless stored in config)
