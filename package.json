@@ -8,6 +8,7 @@
     "open-linear-sync": "./src/cli.js"
   },
   "scripts": {
+    "test": "node --test",
     "verify": "node scripts/verify.js"
   },
   "files": [
