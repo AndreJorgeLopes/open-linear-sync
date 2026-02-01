@@ -412,27 +412,69 @@ async function listTeams(key) {
 }
 
 async function listProjects(key, teamId) {
+  if (teamId) {
+    try {
+      const result = await linearRequest(
+        key,
+        `query TeamProjects($teamId: String!) {\n` +
+          `  team(id: $teamId) {\n` +
+          `    projects {\n` +
+          `      nodes { id name state }\n` +
+          `    }\n` +
+          `  }\n` +
+          `}`,
+        { teamId },
+      );
+      return result?.team?.projects?.nodes || [];
+    } catch (error) {
+      console.warn(
+        "[open-linear-sync] Failed to filter projects by team. Listing all projects.",
+      );
+    }
+  }
+
   const result = await linearRequest(
     key,
-    `query Projects($teamId: String) {\n` +
-      `  projects(filter: { team: { id: { eq: $teamId } } }) {\n` +
+    `query Projects {\n` +
+      `  projects {\n` +
       `    nodes { id name state }\n` +
       `  }\n` +
       `}`,
-    { teamId: teamId || null },
+    {},
   );
   return result?.projects?.nodes || [];
 }
 
 async function listUsers(key, teamId) {
+  if (teamId) {
+    try {
+      const result = await linearRequest(
+        key,
+        `query TeamMembers($teamId: String!) {\n` +
+          `  team(id: $teamId) {\n` +
+          `    members {\n` +
+          `      nodes { id name email }\n` +
+          `    }\n` +
+          `  }\n` +
+          `}`,
+        { teamId },
+      );
+      return result?.team?.members?.nodes || [];
+    } catch {
+      console.warn(
+        "[open-linear-sync] Failed to filter users by team. Listing all users.",
+      );
+    }
+  }
+
   const result = await linearRequest(
     key,
-    `query Users($teamId: String) {\n` +
-      `  users(filter: { team: { id: { eq: $teamId } } }) {\n` +
+    `query Users {\n` +
+      `  users {\n` +
       `    nodes { id name email }\n` +
       `  }\n` +
       `}`,
-    { teamId: teamId || null },
+    {},
   );
   return result?.users?.nodes || [];
 }
